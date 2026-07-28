@@ -64,17 +64,6 @@ The application combines multiple AI technologies into a single platform, enabli
 
 ---
 
-## 🚀 Future Improvements
-
-* Offline AI support
-* Indoor navigation
-* Currency recognition
-* Face recognition with user permission
-* Medication and food label reading
-* Emergency assistance mode
-* Multi-language support
-
----
 
 ## 💡 Why This Project?
 

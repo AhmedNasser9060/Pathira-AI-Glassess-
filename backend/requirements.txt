@@ -1,0 +1,44 @@
+fastapi==0.136.0
+uvicorn[standard]==0.32.0
+sqlalchemy==2.0.49
+asyncpg==0.31.0
+pydantic==2.13.2
+pydantic-settings==2.13.1
+python-jose[cryptography]==3.5.0
+passlib[bcrypt]==1.7.4
+bcrypt==4.0.1
+email-validator==2.2.0
+python-multipart==0.0.20
+slowapi==0.1.9
+pytest==8.4.0
+pytest-asyncio==0.25.0
+httpx==0.28.0
+
+# ML — Phase 1 (OCR). Tesseract binary must be installed at the OS level.
+pytesseract==0.3.13
+Pillow==11.0.0
+
+# ML — Phase 2 (object detection). Pulls torch transitively via ultralytics.
+# Use opencv-python-headless (NOT opencv-python) so no GUI deps on a server.
+# numpy is pinned <2 because older torch builds (e.g. 2.0.x cpu wheels)
+# segfault on `torch.from_numpy(...)` against numpy 2.x — the safe lower
+# bound until the project commits to torch >= 2.4 everywhere.
+ultralytics==8.3.71
+opencv-python-headless==4.10.0.84
+numpy>=1.26.0,<2.0.0
+
+# ML — Phase 3 (face recognition). ArcFace ONNX inference via onnxruntime.
+# Face detection uses OpenCV's bundled Haar cascade — no extra detector dep.
+onnxruntime==1.20.1
+
+# ML — Scene description. BLIP-base (~1 GB) for English image captioning +
+# MarianMT (~300 MB) for English -> Arabic translation. Both downloaded
+# from the Hugging Face hub on first call; cached under ~/.cache/huggingface
+# so a second boot starts instantly. torch is already installed via Phase 2.
+transformers==4.46.3
+sentencepiece==0.2.0
+
+# Voice commands. faster-whisper does on-CPU speech-to-text in ~1 s with
+# the tiny.en model (~40 MB). The Mistral intent parser runs through a
+# locally-hosted Ollama instance — no API key needed.
+faster-whisper==1.0.3
